@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'calculator.dart';
 import 'currency_model_fixer.dart';
 import 'currency_model_gemini.dart';
 import 'gold_page.dart';
@@ -100,7 +102,11 @@ class _MyHomePageState extends State<MyHomePage> {
     _value = _dollar;
     //change background image to "assets/images/usd_bg.jpg"
     setState(() {
-      background = "images/usd_bg.jpg";
+      if (kIsWeb) {
+        background = "images/web_usd.jpg";
+      }else{
+        background = "images/usd_bg.jpg";
+      }
     });
     return "";
   }
@@ -121,7 +127,11 @@ class _MyHomePageState extends State<MyHomePage> {
     _value = _euro;
     //change background image to "assets/images/euro_bg.jpg"
     setState(() {
-      background = "images/euro_bg.jpg";
+      if (kIsWeb) {
+        background = "images/web_eur.jpg";
+      }else{
+        background = "images/euro_bg.jpg";
+      }
     });
     return "";
   }
@@ -171,15 +181,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               },
             ),
+            //new item for drawer
+            ListTile(
+              title: Text('Hesap Makinesi'),
+              onTap: () {
+                //set state to MyApp
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyCalculatorPage()),
+                  );
+                });
+              },
+            ),
           ],
         ),
       ),
+
+
       appBar: AppBar(
         title: Text('Currency App'),
       ),
-
-
-
       body: Container(
         //change background image to background
         decoration: BoxDecoration(
