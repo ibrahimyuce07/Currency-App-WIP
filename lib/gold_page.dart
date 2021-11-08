@@ -2,7 +2,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'main.dart';
 
 class MyGoldPage extends StatelessWidget {
   const MyGoldPage({Key? key}) : super(key: key);
